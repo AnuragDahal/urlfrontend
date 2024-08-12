@@ -34,6 +34,7 @@ const Hero: React.FC = () => {
 
       const response = await fetch(requestUrl, {
         method: "POST",
+        
         headers: {
           "Content-Type": "application/json",
         },
@@ -50,7 +51,7 @@ const Hero: React.FC = () => {
       toast({
         title: "URL Shortened Successfully",
         description: `Your short URL is: ${data.short_url || ""}`,
-        variant: "default"
+        variant: "success"
       });
     } catch (err: any) {
       const errorMessage = err.message || "Failed to shorten URL";

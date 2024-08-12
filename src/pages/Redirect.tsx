@@ -15,3 +15,4 @@ const Redirect: React.FC = () => {
 };
 
 export default Redirect;
+
