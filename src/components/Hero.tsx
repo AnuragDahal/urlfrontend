@@ -4,13 +4,10 @@ import { Textarea } from "@/components/ui/text-area";
 import { Loader as LoaderIcon, Copy as CopyIcon } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 
-const API_URL = "https://snip-nsca.onrender.com/shorten";
+const API_URL = process.env.VITE_SHORTEN_URL;
 
 const copyToClipboard = (text: string) => {
-  navigator.clipboard.writeText(text).then(
-    () => console.log("Copied to clipboard"),
-    (err) => console.error("Failed to copy to clipboard", err)
-  );
+  navigator.clipboard.writeText(text);
 };
 
 const Hero: React.FC = () => {
@@ -34,7 +31,7 @@ const Hero: React.FC = () => {
 
       const response = await fetch(requestUrl, {
         method: "POST",
-        
+
         headers: {
           "Content-Type": "application/json",
         },
@@ -51,7 +48,7 @@ const Hero: React.FC = () => {
       toast({
         title: "URL Shortened Successfully",
         description: `Your short URL is: ${data.short_url || ""}`,
-        variant: "success"
+        variant: "success",
       });
     } catch (err: any) {
       const errorMessage = err.message || "Failed to shorten URL";
@@ -94,7 +91,11 @@ const Hero: React.FC = () => {
             onChange={(event) => setLongUrl(event.target.value)}
             required
           />
-          <Button type="submit" disabled={loading} className="flex items-center justify-center">
+          <Button
+            type="submit"
+            disabled={loading}
+            className="flex items-center justify-center"
+          >
             {loading ? (
               <div className="relative">
                 <div className="spinner"></div>
@@ -123,11 +124,7 @@ const Hero: React.FC = () => {
           </div>
         )}
 
-        {error && (
-          <div className="text-red-500">
-            {error}
-          </div>
-        )}
+        {error && <div className="text-red-500">{error}</div>}
       </div>
     </main>
   );
