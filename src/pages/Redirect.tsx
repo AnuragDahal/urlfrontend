@@ -7,7 +7,7 @@ const Redirect: React.FC = () => {
   useEffect(() => {
     if (uniqueString) {
       // Forward the request to the backend
-      window.location.href = `${process.env.VITE_MAIN_URL}/${uniqueString}`;
+      window.location.href = `${import.meta.env.VITE_MAIN_URL}/${uniqueString}`;
     }
   }, [uniqueString]);
 

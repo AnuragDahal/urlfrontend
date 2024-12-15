@@ -4,7 +4,7 @@ import { Textarea } from "@/components/ui/text-area";
 import { Loader as LoaderIcon, Copy as CopyIcon } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 
-const API_URL = process.env.VITE_SHORTEN_URL;
+const API_URL = import.meta.env.VITE_SHORTEN_URL;
 
 const copyToClipboard = (text: string) => {
   navigator.clipboard.writeText(text);
